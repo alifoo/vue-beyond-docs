@@ -9,18 +9,36 @@
   <body>
     <div id="shopping-list">
       <h1>{{header || 'Welcome'}}</h1>
-      <input type="text" placeholder="Add an item" />
+      <div class="add-item-form">
+        <input
+          @keyup.enter="items.push({id:items.length + 1, label: newItem})"
+          v-model="newItem"
+          type="text"
+          placeholder="Add an item"
+        />
+        <label>
+          <input type="checkbox" v-model="newItemHighPriority" /> High Priority
+        </label>
+        <buton
+          @click="items.push({id:items.length + 1, label: newItem})"
+          class="btn btn-primary"
+          >Save Item</buton
+        >
+      </div>
+
       <ul>
         <li v-for="item in items" :key="item.id">{{item.label}}</li>
       </ul>
     </div>
     <script src="https://unpkg.com/vue@3"></script>
     <script>
-      const shoppingList = Vue.createApp({
+      const shoppingListApp = Vue.createApp({
         // The object that data returns is where we can store data for our Vue instances to use
         data() {
           return {
             header: "Shopping List App",
+            newItem: "",
+            newItemHighPriority: false,
             items: [
               { id: 1, label: "10 party hats" },
               { id: 2, label: "20 cups" },
