@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping list app</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="shopping-list">
+      <h1>{{header || 'Welcome'}}</h1>
+      <input type="text" placeholder="Add an item" />
+      <ul>
+        <li v-for="item in items" :key="item.id">{{item.label}}</li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+      const shoppingList = Vue.createApp({
+        // The object that data returns is where we can store data for our Vue instances to use
+        data() {
+          return {
+            header: "Shopping List App",
+            items: [
+              { id: 1, label: "10 party hats" },
+              { id: 2, label: "20 cups" },
+              { id: 3, label: "30 plates" },
+            ],
+          };
+        },
+      }).mount("#shopping-list");
+    </script>
+  </body>
+</html>
