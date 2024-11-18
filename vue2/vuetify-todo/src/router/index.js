@@ -1,14 +1,14 @@
+import Todo from "@/views/Todo.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "Todo",
+    component: Todo,
   },
   {
     path: "/about",
