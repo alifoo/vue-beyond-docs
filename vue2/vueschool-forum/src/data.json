@@ -1,0 +1,22 @@
+{
+  "threads": {
+    "t1": {
+      "key": "t1",
+      "title": "My first thread",
+      "publishedAt": "",
+      "posts": {
+        "p1": "p1"
+      },
+      "userId": ""
+    }
+  },
+  "posts": {
+    "p1": {
+      "key": "p1",
+      "publishedAt": "",
+      "userId": "",
+      "text": "Hi there!",
+      "threadId": "t1"
+    }
+  }
+}
