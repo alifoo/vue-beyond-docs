@@ -1,6 +1,17 @@
 <template>
   <div class="home">
-    <v-list class="pt-0" flat>
+    <v-text-field
+      v-model="newTaskTitle"
+      @click:append="addTask"
+      @keyup.enter="addTask"
+      class="pa-3"
+      outlined
+      label="Add task"
+      append-icon="mdi-plus"
+      hide-details
+      clearable
+    ></v-text-field>
+    <v-list v-if="tasks.length" class="pt-0" flat>
       <div v-for="task in tasks" :key="task.id">
         <v-list-item
           @click="doneTask(task.id)"
@@ -27,6 +38,10 @@
         <v-divider></v-divider>
       </div>
     </v-list>
+    <div v-else class="no-tasks">
+      <v-icon size="100" color="primary"> mdi-check </v-icon>
+      <p class="text-h5 primary--text">No tasks</p>
+    </div>
   </div>
 </template>
 
@@ -35,25 +50,23 @@ export default {
   name: "Home",
   data() {
     return {
+      newTaskTitle: "",
       tasks: [
-        {
-          id: 1,
-          title: "Wake up",
-          completed: false,
-          done: false,
-        },
-        {
-          id: 2,
-          title: "Eat breakfast",
-          completed: false,
-          done: true,
-        },
-        {
-          id: 3,
-          title: "Go to work",
-          completed: false,
-          done: false,
-        },
+        // {
+        //   id: 1,
+        //   title: "Wake up",
+        //   done: false,
+        // },
+        // {
+        //   id: 2,
+        //   title: "Eat breakfast",
+        //   done: true,
+        // },
+        // {
+        //   id: 3,
+        //   title: "Go to work",
+        //   done: false,
+        // },
       ],
     };
   },
@@ -65,6 +78,23 @@ export default {
     deleteTask(id) {
       this.tasks = this.tasks.filter((task) => task.id !== id);
     },
+    addTask() {
+      let newTask = {
+        id: this.tasks.length + 1,
+        title: this.newTaskTitle,
+        done: false,
+      };
+      this.tasks.push(newTask);
+    },
   },
 };
 </script>
+
+<style lang="sass">
+.no-tasks
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  opacity: 0.5
+</style>
